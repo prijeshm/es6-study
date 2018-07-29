@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>let and const</title>
+    </head>
+    <body>
+        <script>
+            const key = 'abc123';
+            let points = 50;
+            let winner = false;
+
+            try {
+                let points = 100;
+            } catch {
+                points = 100;
+                console.error("points can't be declared again");
+            }
+
+            if(points > 40) {
+                let winner = true;
+            }
+
+            console.log(`Winner: ${winner}`);
+
+            const name = "Prijesh";
+
+            try {
+                name = "Aadhith"
+            } catch {
+                console.log(`Can't change constant value , name is still ${name}`);
+            }
+
+
+            const person = {
+                name: "Prijesh",
+                age: 30
+            }
+
+            try {
+                person = {
+                    name: "Aadhith",
+                    age: 4
+                };
+            } catch {
+                console.log(`Cannot reassign constant value ${JSON.stringify(person)}`)
+            }
+
+            person.name = "Aadhith";
+            person.age = 4;
+            person.place = "Kochi";
+
+            console.log(`But I can change the properties of the constant object ${JSON.stringify(person)}`)
+
+            const prijesh = {
+                name: "Prijesh",
+                age: 30
+            }
+
+            Object.freeze(prijesh);
+            prijesh.name = "Aadhith";
+            console.log(`Cannot change the properties of a freezed object constant : ${JSON.stringify(prijesh)}`)
+        </script>
+    </body>
+</html>

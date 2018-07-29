@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>var, let and const</title>
+    </head>
+    <body>
+        <script>
+            var width = 100;
+            console.log("width: ", width);
+
+            var width = 200;
+            console.log("width: ", width);
+
+            var age = 100;
+            if(age > 7) {
+                var dogYears = age * 7;
+                console.log(`You are ${dogYears} years old`);
+            }
+
+            console.log(`var dogYears & its value ${dogYears} is available outside of if`);
+
+            if(age > 7) {
+                let newDogYears = age * 7;
+                console.log(`newDogYears: ${newDogYears}`);
+            }
+            try {
+                console.log(`let newDogYears: ${newDogYears || ''} is not available outside of if`);
+            } catch {
+                console.error(`let newDogYears is not available outside of if`);
+            }
+        </script>
+    </body>
+</html>

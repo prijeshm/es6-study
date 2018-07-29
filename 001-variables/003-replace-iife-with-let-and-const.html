@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Replace IIFE with let & const</title>
+    </head>
+    <body>
+        <script>
+            // Will be available globally
+            var name1 = "Prijesh";
+            console.warn(`name1 : ${name1}, is publically available`)
+        </script>
+        <script>
+            // Still, it will be available globally
+            let name2 = "Prijesh";
+            console.warn(`name2 : ${name2}, is publically available`)
+        </script>
+        <script>
+            // Protected the variable with IIFE
+            (function() {
+                let name3 = "Prijesh";
+                console.log(`name3 : ${name3}, is protected with IIFE`)
+            })()
+        </script>
+        <script>
+            // Protected the variable with SCOPE {}
+            {
+                let name4 = "Prijesh";
+                console.log(`name4 : ${name4}, is protected with SCOPE section {}`)
+            }
+        </script>
+    </body>
+</html>
