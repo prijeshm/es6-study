@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>ARROW functions Exercise 1</title>
+    </head>
+    <body>
+        <ul>
+            <li data-time="5:17">Flexbox Video</li>
+            <li data-time="8:22">Flexbox Video</li>
+            <li data-time="3:34">Redux Video</li>
+            <li data-time="5:23">Flexbox Video</li>
+            <li data-time="7:12">Flexbox Video</li>
+            <li data-time="7:24">Redux Video</li>
+            <li data-time="6:46">Flexbox Video</li>
+            <li data-time="4:45">Flexbox Video</li>
+            <li data-time="4:40">Flexbox Video</li>
+            <li data-time="7:58">Redux Video</li>
+            <li data-time="11:51">Flexbox Video</li>
+            <li data-time="9:13">Flexbox Video</li>
+            <li data-time="5:50">Flexbox Video</li>
+            <li data-time="5:52">Redux Video</li>
+            <li data-time="5:49">Flexbox Video</li>
+            <li data-time="8:57">Flexbox Video</li>
+            <li data-time="11:29">Flexbox Video</li>
+            <li data-time="3:07">Flexbox Video</li>
+            <li data-time="5:59">Redux Video</li>
+            <li data-time="3:31">Flexbox Video</li>
+        </ul>
+        <script>
+            // Select all the list items on the page and convert to array
+            //const listItems = document.querySelectorAll("li");
+            // OR
+            const listItems = document.querySelectorAll("[data-time]");
+            const itemsArray = Array.from(listItems);
+            //console.log(itemsArray)
+
+            // Filter for only the elements that contain the word 'flexbox'
+            const flexboxItems = itemsArray.filter(item => item.innerText.startsWith("Flexbox"));
+            //console.log('flexboxItems', flexboxItems);
+
+            // map down to a list of time strings
+            const timeStrings = flexboxItems.map(item => item.dataset.time)
+            //console.log("timeStrings: ", timeStrings);
+
+            // map to an array of seconds
+            const seconds = timeStrings.map(time => {
+                const min_sec = time.split(":")
+                return (parseInt(min_sec[0]) * 60) + parseInt(min_sec[1]);
+            })
+            //console.log("seconds: ", seconds);
+
+            // reduce to get total
+            let totalSeconds = seconds.reduce((runningTotal, second) => runningTotal + second, 0);
+            // let totalSeconds = 0;
+            // seconds.map(s => totalSeconds += s);
+            console.log("totalSeconds: ", totalSeconds);
+
+            // Option 2 - chained the things
+            const list = document.querySelectorAll("[data-time]");
+            const totalSeconds2 = Array.from(list)
+                .filter(item => item.innerText.startsWith("Flexbox"))
+                .map(item => item.dataset.time)
+                .map(timeCode => {
+                    const timepart = timeCode.split(":").map(parseFloat);
+                    return (timepart[0] * 60) + timepart[1];
+                })
+                .reduce((runningTotal, seconds) => runningTotal + seconds, 0);
+            console.log("totalSeconds2: ", totalSeconds2);
+            
+            
+            // 🔥 This can also be done in a single .reduce(), but we're practicing arrow functions here, so chain them!
+
+        </script>
+    </body>
+</html>

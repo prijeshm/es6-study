@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <title>Arrow Function and `this`</title>
+        <style>
+            .wrap {
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: sans-serif;
+                font-weight: 100;
+                color: white;
+            }
+
+            .box {
+                background: black url(https://unsplash.it/1500/1500?image=560&blur=0.5) center fixed no-repeat;
+                widows: 50px;
+                height: 50px;
+                padding: 50px;
+                transition: width 0.2s, height 0.6s;
+                position: relative;
+            }
+
+            .box.opening {
+                width: 500px;
+                height: 500px;
+            }
+
+            .box h2 {
+                position: absolute;
+                width: 100%;
+                font-size: 100px;
+                transform: translate(-200%);
+                transition: all 0.5s;
+                top: 0;
+            }
+
+            .box p {
+                position: absolute;
+                width: 100%;
+                transform: translateX(200%);
+                transition: all 0.5s;
+                bottom: 0;
+            }
+
+            .box.open > * {
+                transform: translateX(0%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="box">
+                <h2>Prijesh Meppayil</h2>
+                <p class="social">@prijeshm</p>
+            </div>
+        </div>
+        <script>
+            const box = document.querySelector(".box");
+            console.log(box);
+            /*
+            box.addEventListener("click", () => {
+                // here this means window
+                console.log(this);
+            })
+            */
+            
+            // Working Option 1
+            /*
+            box.addEventListener("click", function() {
+                var self = this;
+                this.classList.toggle("opening");
+                setTimeout(function() {
+                    // here also this means window
+                    console.log(this);
+                    self.classList.toggle("open");
+                }, 500);
+            });
+            */
+
+            // Working Option 2 - with ARROW function
+            box.addEventListener("click", function() {
+                let first = "opening";
+                let second = "open";
+                if(this.classList.contains(first)) {
+                    [first, second] = [second, first];
+                }
+                this.classList.toggle(first);
+                setTimeout(() => {
+                    // here this means box
+                    console.log(this);
+                    this.classList.toggle(second);
+                }, 500);
+            })
+            
+        </script>
+    </body>
+</html>

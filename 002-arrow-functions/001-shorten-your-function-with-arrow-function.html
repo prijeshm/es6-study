@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Shorten your function with Arrow Function</title>
+    </head>
+    <body>
+        <script>
+            const names = ["Prijesh", "Jijina", "Aadhith"];
+
+            const fullNames1 = names.map(function(name) {
+                return `${name} here`;
+            });
+            console.log(`fullNames1: ${fullNames1}`);
+
+            const fullNames2 = names.map((name) => {
+                return `${name} here`; 
+            });
+            console.log(`fullNames2: ${fullNames2}`);
+
+            const fullNames3 = names.map(name => {
+                return `${name} here`; 
+            });
+            console.log(`fullNames3: ${fullNames3}`);
+
+            const fullNames4 = names.map(name => `${name} here`)
+            console.log(`fullNames4: ${fullNames4}`);
+
+
+            function sayMyName1(name) {
+                console.log(`Hello ${name}, from normal function`);
+            }
+            sayMyName1("Prijesh");
+
+            const sayMyName2 = name => {console.log(`Hello ${name}, from arrow function`)}
+            sayMyName2("Jijina");
+
+            // Call Arrow function multiple times with map
+            names.map(sayMyName2);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>Implicit return in Arrow Function</title>
+    </head>
+    <body>
+        <script>
+            const race = "100 meter race";
+            const participants = ["Prijesh", "Jijina", "Aadhith"];
+
+            const win = participants.map((name, i) => ({name, race, place: i + 1}));
+            console.table(win);
+        </script>
+    </body>
+</html>

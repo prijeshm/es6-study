@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Function's default Arguments</title>
+    </head>
+    <body>
+        <script>
+            function calculateBill(total, taxPercent, tipPercent) {
+                return total + (total * taxPercent) + (total * tipPercent);
+            }
+
+            const totalBill1 = calculateBill(100, 0.13, 0.15);
+            console.log(`totalBill1 with calculateBill: ${totalBill1}`);
+
+            const totalBill2 = calculateBill(100);
+            //this will be NaN
+            console.log(`totalBill2 with calculateBill2: ${totalBill2}`);
+
+            function calculateBill2(total, taxPercent, tipPercent) {
+                if(taxPercent === undefined) {
+                    taxPercent = 0.13;
+                }
+                if(tipPercent === undefined) {
+                    tipPercent = 0.15;
+                }
+                return total + (total * taxPercent) + (total * tipPercent);
+            }
+
+            const totalBill3 = calculateBill2(100);
+            //this will be 128
+            console.log(`totalBill3 with calculateBill2: ${totalBill3}`);
+
+
+            function calculateBill3(total, taxPercent, tipPercent) {
+                taxPercent = taxPercent || 0.13;
+                tipPercent = tipPercent || 0.15;
+
+                return total + (total * taxPercent) + (total * tipPercent);
+            }
+
+            const totalBill4 = calculateBill3(100);
+            //this will be 128
+            console.log(`totalBill4 with calculateBill3: ${totalBill4}`);
+
+            function calculateBill4(total, taxPercent = 0.13, tipPercent = 0.15) {
+                return total + (total * taxPercent) + (total * tipPercent);
+            }
+
+            const totalBill5 = calculateBill4(100);
+            //this will be 128
+            console.log(`totalBill5 with calculateBill4: ${totalBill4}`);
+
+            const differentBill1 = calculateBill4(100, undefined, 0.25);
+            //this will be 138
+            console.log(`differentBill1 with calculateBill4: ${differentBill1}`);
+
+            const differentBill2 = calculateBill4(100, 0.25);
+            //this will be 140
+            console.log(`differentBill2 with calculateBill4: ${differentBill2}`);
+        </script>
+    </body>
+</html>
